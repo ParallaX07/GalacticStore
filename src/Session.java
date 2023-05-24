@@ -17,7 +17,7 @@ public class Session {
         //create a bin file with object of products
     }
 
-    public Session getSession(){
+    public static Session getSession(){
         if(session == null){
             session = new Session();
         }
