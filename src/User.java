@@ -1,12 +1,12 @@
 public abstract class User {
     private String name;
-    private String age;
+    private int age;
     private String gender;
     private String email;
     private String password;
 
 
-    protected User(String name, String age, String gender, String email, String password) {
+    protected User(String name, int age, String gender, String email, String password) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -22,11 +22,11 @@ public abstract class User {
         this.name = name;
     }
 
-    public String getAge() {
+    public int getAge() {
         return this.age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
