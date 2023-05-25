@@ -1,5 +1,3 @@
-package GalacticStore;
-
 import java.util.Scanner;
 
 public class Session {

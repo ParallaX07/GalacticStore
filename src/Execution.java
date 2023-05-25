@@ -1,5 +1,3 @@
-package GalacticStore;
-
 public class Execution {
     public static void main(String[] args) {
         
@@ -8,5 +6,6 @@ public class Execution {
 
             //add try catch to match email and password
         }
+        
     }
 }
