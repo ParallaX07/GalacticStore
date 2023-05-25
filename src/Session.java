@@ -1,11 +1,42 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Session {
     private static Session session = null;
     public Scanner scanInt = new Scanner(System.in);
+    public int readInt() {
+        int choice = -1;
+        while (choice == -1) {
+            try {
+                choice = this.scanInt.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                this.scanInt.nextLine(); // discard the invalid input
+            }
+        }
+        this.scanInt.nextLine();  // clear the newline left by nextInt()
+        return choice;
+    }
+
+    public double readDouble() {
+        double choice = -1;
+        while (choice == -1) {
+            try {
+                choice = this.scanInt.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                this.scanInt.nextLine(); // discard the invalid input
+            }
+        }
+        this.scanInt.nextLine();  // clear the newline left by nextInt()
+        return choice;
+    }
+
     public Scanner scanString = new Scanner(System.in);
     public Product [] initalProduct = new Product [12];
+    public ArrayList<User> userList = new ArrayList<User>();
 
     private Session() {
         createDatabase();
@@ -13,13 +44,8 @@ public class Session {
 
     private void createDatabase() {
         //todo add admin in user file
-        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("userListFile.bin"))){
-            User admin = new Admin("admin1", 43, "Male", "admin1@gmail.com", "password");
-            output.writeObject(admin);
-            //todo add some default users
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
+        userList.add(new Admin("admin", 43, "Male", "admin@gmail.com", "password"));
+            
 
         //create some default user in file
         //todo create same product with condition type used and lower the price

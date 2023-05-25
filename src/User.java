@@ -1,4 +1,4 @@
-public abstract class User {
+public abstract class User implements Actions{
     private String name;
     private int age;
     private String gender;
