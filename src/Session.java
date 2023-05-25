@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Session {
@@ -6,6 +7,7 @@ public class Session {
     public Scanner scanInt = new Scanner(System.in);
     public Scanner scanString = new Scanner(System.in);
     public Product [] initalProduct = new Product [12];
+    public ArrayList<User> userList = new ArrayList<User>();
 
     private Session() {
         createDatabase();
@@ -39,7 +41,7 @@ public class Session {
         for (Product product : initalProduct) {
             Store.getAllProducts().add(product);
         }
-        
+
         //or write in file like this:
         //create a bin file with object of products
         //todo use append fileoutputstream for final part of project

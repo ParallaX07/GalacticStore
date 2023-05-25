@@ -32,15 +32,13 @@ public class Execution {
     }
 
     //todo change void to User
-    public static void login(String email, String password) {
+    //todo change exception 
+    public static void login(String email, String password) throws Exception{
         Session session = Session.getSession();
 
-        try (ObjectInputStream input = new ObjectInputStream(new FileInputStream("userListFile.bin"))) {
+        ObjectInputStream input = new ObjectInputStream(new FileInputStream("userListFile.bin"));
            User loginUser = (User)(input.readObject());
-           //match mail and pass with userListFile
-        } catch (Exception e) {
-            System.out.println("File not found");
-        }
 
+        
     }
 }
