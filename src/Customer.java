@@ -27,7 +27,7 @@ public class Customer extends User{
     }
 
     public void viewCart() {
-        double totolPrice = 0;
+        double totalPrice = 0;
         System.out.println("Your cart contains:");
 
         for (Product product : inCart) {
@@ -36,8 +36,13 @@ public class Customer extends User{
             System.out.println("Quantity: " + product.getCartQuantity());
             System.out.println();
 
-            totolPrice += product.getPrice() * product.getCartQuantity();
+            totalPrice += product.getPrice() * product.getCartQuantity();
         }
-        System.out.println("Total price: " + totolPrice);
+        System.out.println("Total price: " + totalPrice);
+    }
+
+    @Override
+    public void handleActions(){
+        
     }
 }
