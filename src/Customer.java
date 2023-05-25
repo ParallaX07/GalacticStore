@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Customer extends User{
     private ArrayList<Product> inCart = new ArrayList<Product>();
 
-    public Customer (String name, String age, String gender, String email, String password) {
+    public Customer (String name, int age, String gender, String email, String password) {
         super(name, age, gender, email, password);
     }
 

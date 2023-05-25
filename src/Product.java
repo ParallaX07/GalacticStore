@@ -4,14 +4,14 @@ public class Product implements Serializable{
     private String name;
     private double price;
     private int stock;
-    private int planet;
+    private String planet;
     private String galaxy;
     private String condition;
 
     private int cartQuantity;
 
 
-    public Product(String name, double price, int stock, int planet, String galaxy, String condition) {
+    public Product(String name, double price, int stock, String planet, String galaxy, String condition) {
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -45,11 +45,11 @@ public class Product implements Serializable{
         this.stock = stock;
     }
 
-    public int getPlanet() {
+    public String getPlanet() {
         return this.planet;
     }
 
-    public void setPlanet(int planet) {
+    public void setPlanet(String planet) {
         this.planet = planet;
     }
 
