@@ -65,7 +65,7 @@ public class Session {
         for (Product product : initalProduct) {
             Store.getAllProducts().add(product);
         }
-        
+
         //or write in file like this:
         //create a bin file with object of products
         //todo use append fileoutputstream for final part of project
