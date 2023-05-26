@@ -79,6 +79,7 @@ public class Session {
 
     public static Session getSession(){
         if(session == null){
+            System.out.println("Session is being created");
             session = new Session();
         }
         return session;

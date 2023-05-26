@@ -3,7 +3,7 @@ public class Execution {
     public static void main(String[] args) {
         
         Session session = Session.getSession();
-
+        
         while(true){
             // ask for email and password
             System.out.println("Email: ");

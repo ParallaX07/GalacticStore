@@ -32,6 +32,7 @@ class Admin extends User{
         System.out.println("Product \"" + product.getName() + "\" added");
     }
 
+    @Override
     public Product searchItem(String name){
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getName().toLowerCase().equals(name.toLowerCase())) {
