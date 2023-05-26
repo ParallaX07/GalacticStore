@@ -45,7 +45,8 @@ public class Session {
     private void createDatabase() {
         //todo add admin in user file
         userList.add(new Admin("admin", 43, "Male", "admin@gmail.com", "password"));
-            
+        userList.add(new Customer("customer1", 30, "Female", "customer1@gmail.com", "password"));
+        userList.add(new Customer("customer2", 345, "Male", "customer2@gmail.com", "password"));
 
         //create some default user in file
         //todo create same product with condition type used and lower the price
