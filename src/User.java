@@ -4,7 +4,7 @@ public abstract class User implements Actions{
     private String gender;
     private String email;
     private String password;
-
+    
 
     protected User(String name, int age, String gender, String email, String password) {
         this.name = name;
