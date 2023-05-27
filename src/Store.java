@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Store {
+public class Store implements Serializable {
     //Session will write to file, and this will read from file
     //Every other class will deal with this, and at the end of the program, this will write to file
 
@@ -11,6 +12,10 @@ public class Store {
 
     public static ArrayList<User> getAllUsers() {
         return allUsers;
+    }
+
+    public static void setAllUsers(ArrayList<User> allUsers) {
+        Store.allUsers = allUsers;
     }
     
     public static ArrayList<Product> getAllProducts() {

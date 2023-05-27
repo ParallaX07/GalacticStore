@@ -167,32 +167,27 @@ public class Customer extends User {
                     addingMenu();
                     break;
                 case 2:
-                    Store.displayGalaxyNames();
-                    System.out.println("Choose a galaxy: ");
-                    String galaxy = session.scanString.nextLine();
-                    boolean galaxyExists = Store.viewByGalaxy(galaxy);
-
-                    while (galaxyExists == false) {
+                    boolean galaxyExists = false;
+                    String galaxy;
+                    do {
                         Store.displayGalaxyNames();
                         System.out.println("Choose a galaxy: ");
                         galaxy = session.scanString.nextLine();
                         galaxyExists = Store.viewByGalaxy(galaxy);
-                    }
+                    }while(galaxyExists == false);
                     // only goes to add menu if galaxy exists
                     addingMenu();
                     break;
                 case 3:
-                    Store.displayPlanetNames();
-                    System.out.println("Choose a planet: ");
                     String planet = session.scanString.nextLine();
                     boolean planetExists = Store.viewByPlanet(planet);
 
-                    while (planetExists == false) {
+                    do {
                         Store.displayPlanetNames();
                         System.out.println("Choose a planet: ");
                         planet = session.scanString.nextLine();
                         planetExists = Store.viewByPlanet(planet);
-                    }
+                    }while(planetExists == false);
                     // only goes to add menu if planet exists
                     addingMenu();
                     break;

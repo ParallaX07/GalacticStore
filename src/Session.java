@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -73,11 +72,11 @@ public class Session {
         //or write in file like this:
         //create a bin file with object of products
         //todo use append fileoutputstream for final part of project
-        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("productListFile.bin"));) {
-            output.writeObject(initalProduct);
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
+        // try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("productListFile.bin"));) {
+        //     output.writeObject(initalProduct);
+        // } catch (Exception e) {
+        //     System.out.println("Error");
+        // }
     }
 
     public static Session getSession(){
