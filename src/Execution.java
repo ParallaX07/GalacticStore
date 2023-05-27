@@ -4,10 +4,11 @@ public class Execution {
     public static void main(String[] args) {
 
         Session session = Session.getSession();
-
-        while (true) {
+        boolean exit = false;
+        do {
             clearConsole();
-            System.out.println("1. Login    2. Sign up");
+            FileHandler.loadUsersFromFile();
+            System.out.println("1. Login    2. Sign up    3. Exit Program");
             int choice = session.readInt();
 
             switch (choice) {
@@ -33,45 +34,67 @@ public class Execution {
                     // call method to add user
                     signUp();
                     break;
+                case 3:
+                    FileHandler.saveUsersToFile();
+                    exit = true;
+                    break;
                 default:
+                    System.out.println("Invalid input");
                     break;
             }
-        }
+        } while (!exit);
 
     }
 
     public static void signUp() {
         Session session = Session.getSession();
-        int choice;
+        int choice = -1;
 
         System.out.println("Enter details");
+        boolean valid = false;
+        String email;
+        do{
+            valid = true;
+            System.out.print("Enter email: ");
+            email = session.scanString.nextLine();
+            if (!email.contains("@")) {
+                valid = false;
+                invalidInput();
+                choice = session.readInt();
+                while (choice != 0) {
+                    invalidInput();
+                    choice = session.readInt();
+                }
+                
+            }
+            
+        }while(!valid);
+
+        for (User user : Store.getAllUsers()) {
+            if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
+                System.out.println("Already registered");
+                System.out.println("Press 0 to go back");
+                choice = session.readInt();
+        
+                while (choice != 0) {
+                    invalidInput();
+                    choice = session.readInt();
+                }
+                return;
+            }
+        }
+
         System.out.print("Enter name: ");
         String name = session.scanString.nextLine();
         System.out.print("Enter age: ");
         int age = session.readInt();
         System.out.print("Enter gender: ");
         String gender = session.scanString.nextLine();
-        System.out.print("Enter email: ");
-        String email = session.scanString.nextLine();
+        
         System.out.print("Enter password: ");
         String password = session.scanString.nextLine();
 
         User customer = new Customer(name, age, gender, email, password);
-
-        for (User user : Store.getAllUsers()) {
-            if (user.getEmail().equals(customer.getEmail())) {
-                System.out.println("Already registered");
-                System.out.println("Press 0 to go back");
-                choice = session.readInt();
-        
-                while (choice != 0) {
-                    System.out.println("Invalid input");
-                    System.out.println("Press 0 to go back");
-                    choice = session.readInt();
-                }
-                return;
-            }
-        }
 
         Store.getAllUsers().add(customer);
         System.out.println("Sign up successful!");
@@ -79,11 +102,15 @@ public class Execution {
         choice = session.readInt();
 
         while (choice != 0) {
-            System.out.println("Invalid input");
-            System.out.println("Press 0 to go back");
+            invalidInput();
             choice = session.readInt();
         }
         return;
+    }
+
+    public static void invalidInput() {
+        System.out.println("Invalid input");
+        System.out.println("Press 0 to go back");
     }
 
     // todo change void to User
