@@ -7,6 +7,8 @@ public class Execution {
         boolean exit = false;
         do {
             clearConsole();
+            FileHandler.saveProductsToFile();
+            FileHandler.saveUsersToFile();
             FileHandler.loadUsersFromFile();
             System.out.println("1. Login    2. Sign up    3. Exit Program");
             int choice = session.readInt();
