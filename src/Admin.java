@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-class Admin extends User{
+class Admin extends User implements Serializable{
     ArrayList<Product> allProducts = Store.getAllProducts();
     public Admin(String name, int age, String gender, String email, String password) {
         super(name, age, gender, email, password);
@@ -32,6 +33,7 @@ class Admin extends User{
         System.out.println("Product \"" + product.getName() + "\" added");
     }
 
+    @Override
     public Product searchItem(String name){
         for (int i = 0; i < allProducts.size(); i++) {
             if (allProducts.get(i).getName().toLowerCase().equals(name.toLowerCase())) {

@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.nio.file.SecureDirectoryStream;
 
 public class Product implements Serializable{
     private String name;
@@ -75,6 +76,10 @@ public class Product implements Serializable{
 
     public void setCartQuantity(int cartQuantity) {
         this.cartQuantity = cartQuantity;
+    }
+
+    public String toString(){
+        return "Name: " + name + "\nPrice: " + price + "\nStock: " + stock + "\nPlanet: " + planet + "\nGalaxy: " + galaxy + "\nCondition: " + condition;
     }
 
 }

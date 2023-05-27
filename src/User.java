@@ -1,4 +1,6 @@
-public abstract class User implements Actions{
+import java.io.Serializable;
+
+public abstract class User implements Actions, Serializable{
     private String name;
     private int age;
     private String gender;
