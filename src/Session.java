@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -46,10 +47,14 @@ public class Session {
         userList.add(new Admin("admin", 43, "Male", "admin@gmail.com", "password"));
         userList.add(new Customer("customer1", 30, "Female", "customer1@gmail.com", "password"));
         userList.add(new Customer("customer2", 345, "Male", "customer2@gmail.com", "password"));
-
-        for (User user : userList) {
-            Store.getAllUsers().add(user);
+        
+        //checks if any users were loaded from file to userList
+        if(Store.getAllUsers().size() < 1){
+            for (User user : userList) {
+                Store.getAllUsers().add(user);
+            }
         }
+
         //create some default user in file
         //todo create same product with condition type used and lower the price
         initalProduct[0] = new Product("Moon Rock Dust", 20, 5, "XVI", "Milky Way", "New");
@@ -65,18 +70,13 @@ public class Session {
         initalProduct[10] = new Product("Hyperdimensional FLux capacitor", 490, 5, "II", "Milky Way", "New");
         initalProduct[11] = new Product("Dark Matter Injector", 490, 5, "II", "Andromeda", "New");
 
-        for (Product product : initalProduct) {
-            Store.getAllProducts().add(product);
+        //checks if any products were loaded from file to productLists
+        if(Store.getAllProducts().size() < 1){
+            for (Product product : initalProduct) {
+                Store.getAllProducts().add(product);
+            }
         }
 
-        //or write in file like this:
-        //create a bin file with object of products
-        //todo use append fileoutputstream for final part of project
-        // try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("productListFile.bin"));) {
-        //     output.writeObject(initalProduct);
-        // } catch (Exception e) {
-        //     System.out.println("Error");
-        // }
     }
 
     public static Session getSession(){

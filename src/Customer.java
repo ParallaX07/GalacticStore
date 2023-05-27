@@ -1,7 +1,6 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Customer extends User implements Serializable{
+public class Customer extends User {
     private ArrayList<cartProduct> inCart = new ArrayList<cartProduct>();
     ArrayList<Product> allProducts = Store.getAllProducts();
 

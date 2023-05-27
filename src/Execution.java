@@ -1,15 +1,16 @@
-import java.io.*;
 
 public class Execution {
     public static void main(String[] args) {
 
+        FileHandler.loadUsersFromFile();
+        FileHandler.loadProductFromFile();
         Session session = Session.getSession();
         boolean exit = false;
+
         do {
             clearConsole();
-            FileHandler.saveProductsToFile();
-            FileHandler.saveUsersToFile();
-            FileHandler.loadUsersFromFile();
+            System.out.println("Users: " + Store.getAllUsers().size());
+            System.out.println("Products: " + Store.getAllProducts().size());
             System.out.println("1. Login    2. Sign up    3. Exit Program");
             int choice = session.readInt();
 
@@ -38,6 +39,7 @@ public class Execution {
                     break;
                 case 3:
                     FileHandler.saveUsersToFile();
+                    FileHandler.saveProductsToFile();
                     exit = true;
                     break;
                 default:
