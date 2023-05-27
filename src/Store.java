@@ -7,6 +7,11 @@ public class Store {
     private static ArrayList<Product> allProducts = new ArrayList<Product>();
     private static ArrayList<String> allGalaxies = new ArrayList<String>();
     private static ArrayList<String> allPlanets = new ArrayList<String>();
+    private static ArrayList<User> allUsers = new ArrayList<User>();
+
+    public static ArrayList<User> getAllUsers() {
+        return allUsers;
+    }
     
     public static ArrayList<Product> getAllProducts() {
         return allProducts;
@@ -59,9 +64,10 @@ public class Store {
         }
     }
 
-    public static void viewByGalaxy(String galaxyName){
+    public static boolean viewByGalaxy(String galaxyName){
         System.out.println("Products in " + galaxyName + ":");
         boolean galaxyExists = false;
+
         for (Product product : allProducts) {
             if (product.getGalaxy().toLowerCase().equals(galaxyName.toLowerCase())) {
                 System.out.println("Name: " + product.getName());
@@ -76,11 +82,11 @@ public class Store {
         }
         if(!galaxyExists) {
             System.out.println("Galaxy does not exist in store.");
-            return;
         }
+        return galaxyExists;
     }
 
-    public static void viewByPlanet(String planetName){
+    public static boolean viewByPlanet(String planetName){
         System.out.println("Products in " + planetName + ":");
         boolean planetExists = false;
         for (Product product : allProducts) {
@@ -92,11 +98,12 @@ public class Store {
                 System.out.println("Galaxy: " + product.getGalaxy());
                 System.out.println("Condition: " + product.getCondition());
                 System.out.println();
+                planetExists = true;
             }
         }
         if(!planetExists) {
             System.out.println("Planet does not exist in store.");
-            return;
         }
+        return planetExists;
     }
 }
