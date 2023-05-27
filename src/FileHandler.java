@@ -7,10 +7,10 @@ public class FileHandler {
         try (ObjectInputStream input = new ObjectInputStream(new FileInputStream("userListFile.bin"))) {
             @SuppressWarnings("unchecked")
             ArrayList<User> loadedUsers = (ArrayList<User>) input.readObject();
-            Store.setAllUsers(loadedUsers);
+            //Store.setAllUsers(loadedUsers);
 
             for (User user : loadedUsers) {
-                System.out.println(user.getEmail());
+                Store.getAllUsers().add(user);
             }
 
         } catch (Exception e) {
@@ -19,11 +19,25 @@ public class FileHandler {
     }
 
     public static void saveUsersToFile() {
-        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("userListFile.bin", true))) {
+        try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("userListFile.bin"))) {
             output.writeObject(Store.getAllUsers());
         } catch (Exception e) {
             System.out.println("Saving users failed " + e.getMessage());
             System.out.println(e.getStackTrace());
+        }
+    }
+
+    public static void loadProductFromFile() {
+        try (ObjectInputStream input = new ObjectInputStream(new FileInputStream("productListFile.bin"))) {
+            @SuppressWarnings("unchecked")
+            ArrayList<Product> loadedproducts = (ArrayList<Product>) input.readObject();
+            System.out.println("loaded products: " + loadedproducts.size());
+            for (Product product : loadedproducts) {
+                Store.getAllProducts().add(product);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Loading users failed " + e.getMessage());
         }
     }
     

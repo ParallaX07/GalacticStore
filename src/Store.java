@@ -14,9 +14,9 @@ public class Store implements Serializable {
         return allUsers;
     }
 
-    public static void setAllUsers(ArrayList<User> allUsers) {
-        Store.allUsers = allUsers;
-    }
+    // public static void setAllUsers(ArrayList<User> allUsers) {
+    //     Store.allUsers = allUsers;
+    // }
     
     public static ArrayList<Product> getAllProducts() {
         return allProducts;
