@@ -15,12 +15,7 @@ public class Store {
     public static void viewAllProducts(){
         System.out.println("All products:");
         for (Product product : allProducts) {
-            System.out.println("Name: " + product.getName());
-            System.out.println("Price: " + product.getPrice());
-            System.out.println("Stock: " + product.getStock());
-            System.out.println("Planet: " + product.getPlanet());
-            System.out.println("Galaxy: " + product.getGalaxy());
-            System.out.println("Condition: " + product.getCondition());
+            System.out.println(product.toString());
             System.out.println();
         }
     }
@@ -64,12 +59,7 @@ public class Store {
         boolean galaxyExists = false;
         for (Product product : allProducts) {
             if (product.getGalaxy().toLowerCase().equals(galaxyName.toLowerCase())) {
-                System.out.println("Name: " + product.getName());
-                System.out.println("Price: " + product.getPrice());
-                System.out.println("Stock: " + product.getStock());
-                System.out.println("Planet: " + product.getPlanet());
-                System.out.println("Galaxy: " + product.getGalaxy());
-                System.out.println("Condition: " + product.getCondition());
+                System.out.println(product.toString());
                 System.out.println();
                 galaxyExists = true;
             }
@@ -85,13 +75,9 @@ public class Store {
         boolean planetExists = false;
         for (Product product : allProducts) {
             if (product.getPlanet().toLowerCase().equals(planetName.toLowerCase())) {
-                System.out.println("Name: " + product.getName());
-                System.out.println("Price: " + product.getPrice());
-                System.out.println("Stock: " + product.getStock());
-                System.out.println("Planet: " + product.getPlanet());
-                System.out.println("Galaxy: " + product.getGalaxy());
-                System.out.println("Condition: " + product.getCondition());
+                System.out.println(product.toString());
                 System.out.println();
+                planetExists = true;
             }
         }
         if(!planetExists) {

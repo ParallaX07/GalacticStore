@@ -77,4 +77,8 @@ public class Product implements Serializable{
         this.cartQuantity = cartQuantity;
     }
 
+    public String toString(){
+        return "Name: " + name + "\nPrice: " + price + "\nStock: " + stock + "\nPlanet: " + planet + "\nGalaxy: " + galaxy + "\nCondition: " + condition;
+    }
+
 }
