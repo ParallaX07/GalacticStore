@@ -1,7 +1,6 @@
 import java.io.Serializable;
-import java.nio.file.SecureDirectoryStream;
 
-public class Product implements Serializable{
+public class Product implements Serializable {
     private String name;
     private double price;
     private int stock;
