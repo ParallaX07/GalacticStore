@@ -8,8 +8,6 @@ public class Customer extends User {
         super(name, age, gender, email, password);
     }
 
-    // todo sort galaxy and sort planet in a list
-
     public void addToCart(String name) {
         Session session = Session.getSession();
         Product product = searchItem(name);
@@ -28,17 +26,17 @@ public class Customer extends User {
             return;
         }
 
-        while(amount > product.getStock()){
+        while (amount > product.getStock()) {
             System.out.println("Only " + product.getStock() + " of " + product.getName() + " available.");
             System.out.println("Please enter amount within this range: ");
             amount = session.readInt();
         }
-        
-        for(cartProduct cartProduct : inCart){
-            if(cartProduct.getProduct().getName().equals(product.getName())){
+
+        for (cartProduct cartProduct : inCart) {
+            if (cartProduct.getProduct().getName().equals(product.getName())) {
                 System.out.println("Item already in cart. Do you want to update the item? (y/n)");
                 String choice = session.scanString.nextLine();
-                if(choice.toLowerCase().equals("y")){
+                if (choice.toLowerCase().equals("y")) {
                     // cartProduct.setQuantity(cartProduct.getQuantity() + amount);
                     updateCartItem(name);
                     return;
@@ -46,11 +44,11 @@ public class Customer extends User {
                 return;
             }
         }
-        
-        //change product incart quantity
+
+        // change product incart quantity
         product.setStock(product.getStock() - amount);
         inCart.add(new cartProduct(product, amount));
-        
+
     }
 
     public void removeFromCart(String name) {
@@ -61,14 +59,14 @@ public class Customer extends User {
         }
         for (cartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
-                    inCart.remove(cartProduct);
+                inCart.remove(cartProduct);
                 return;
             }
         }
         System.out.println("Item not in cart");
     }
 
-    public void updateCartItem(String name){
+    public void updateCartItem(String name) {
         Session session = Session.getSession();
         Product product = searchItem(name);
         if (product == null) {
@@ -82,25 +80,24 @@ public class Customer extends User {
                 currentAmount = cartProduct.getQuantity();
                 System.out.println("Enter new amount: ");
                 int amount = session.readInt();
-                //if amount is more than current amount, remove from stock, else add to stock
+                // if amount is more than current amount, remove from stock, else add to stock
                 int addOrRemove = amount - currentAmount;
 
-                while(addOrRemove > product.getStock()){
+                while (addOrRemove > product.getStock()) {
                     System.out.println("Only " + product.getStock() + " of " + product.getName() + " available.");
                     System.out.println("Please enter amount within this range: ");
                     amount = session.readInt();
                     addOrRemove = amount - currentAmount;
                 }
 
-                if (addOrRemove > 0){
+                if (addOrRemove > 0) {
+                    product.setStock(product.getStock() - addOrRemove);
+                    cartProduct.setQuantity(amount);
+                } else {
                     product.setStock(product.getStock() - addOrRemove);
                     cartProduct.setQuantity(amount);
                 }
-                else{
-                    product.setStock(product.getStock() - addOrRemove);
-                    cartProduct.setQuantity(amount);
-                }
-                
+
                 return;
             }
         }
@@ -132,7 +129,7 @@ public class Customer extends User {
         return null;
     }
 
-    public void addingMenu(){
+    public void addingMenu() {
         Session session = Session.getSession();
         boolean back = false;
         do {
@@ -154,14 +151,15 @@ public class Customer extends User {
             }
             break;
         } while (!back);
-       // viewCart();
+        // viewCart();
     }
 
     @Override
     public void handleActions() {
         Session session = Session.getSession();
         do {
-            System.out.println("1. View all items    2. View by Galaxy    3. View by Planet    4. View items in cart    5. Log out");
+            System.out.println(
+                    "1. View all items    2. View by Galaxy    3. View by Planet    4. View items in cart    5. Log out");
             int choice = session.readInt();
             switch (choice) {
                 case 1:
@@ -172,24 +170,40 @@ public class Customer extends User {
                     Store.displayGalaxyNames();
                     System.out.println("Choose a galaxy: ");
                     String galaxy = session.scanString.nextLine();
-                    Store.viewByGalaxy(galaxy);
+                    boolean galaxyExists = Store.viewByGalaxy(galaxy);
+
+                    while (galaxyExists == false) {
+                        Store.displayGalaxyNames();
+                        System.out.println("Choose a galaxy: ");
+                        galaxy = session.scanString.nextLine();
+                        galaxyExists = Store.viewByGalaxy(galaxy);
+                    }
+                    // only goes to add menu if galaxy exists
                     addingMenu();
                     break;
                 case 3:
                     Store.displayPlanetNames();
                     System.out.println("Choose a planet: ");
                     String planet = session.scanString.nextLine();
-                    Store.viewByPlanet(planet);
+                    boolean planetExists = Store.viewByPlanet(planet);
+
+                    while (planetExists == false) {
+                        Store.displayPlanetNames();
+                        System.out.println("Choose a planet: ");
+                        planet = session.scanString.nextLine();
+                        planetExists = Store.viewByPlanet(planet);
+                    }
+                    // only goes to add menu if planet exists
                     addingMenu();
                     break;
                 case 4:
                     boolean back2 = false;
-                    do{ 
+                    do {
                         viewCart();
-                        
+
                         System.out.println("1. Remove item from cart    2. Update Item in cart    3. Back");
                         int choice3 = session.readInt();
-                        switch(choice3){
+                        switch (choice3) {
                             case 1:
                                 System.out.println("Enter name of item to remove: ");
                                 String name = session.scanString.nextLine();
@@ -200,14 +214,14 @@ public class Customer extends User {
                                 String name2 = session.scanString.nextLine();
                                 updateCartItem(name2);
                                 break;
-                            case 3: 
+                            case 3:
                                 back2 = true;
-                                break;  
+                                break;
                             default:
                                 System.out.println("Invalid input");
                                 break;
                         }
-                    }while(!back2);
+                    } while (!back2);
                     break;
                 case 5:
                     return;
