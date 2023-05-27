@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Customer extends User {
     private ArrayList<cartProduct> inCart = new ArrayList<cartProduct>();
-    ArrayList<Product> allProducts = Store.getAllProducts();
+    private ArrayList<cartProduct> orderHistory = new ArrayList<cartProduct>();
 
     public Customer(String name, int age, String gender, String email, String password) {
         super(name, age, gender, email, password);
@@ -103,17 +103,36 @@ public class Customer extends User {
 
     public void viewCart() {
         double totalPrice = 0;
-        System.out.println("Your cart contains:");
+        if (!inCart.isEmpty()) {
+            System.out.println("Your cart contains:");
+            for (cartProduct product : inCart) {
+                System.out.println("Name: " + product.getProduct().getName());
+                System.out.println("Price: " + product.getProduct().getPrice());
+                System.out.println("Quantity: " + product.getQuantity());
+                System.out.println();
 
-        for (cartProduct product : inCart) {
-            System.out.println("Name: " + product.getProduct().getName());
-            System.out.println("Price: " + product.getProduct().getPrice());
-            System.out.println("Quantity: " + product.getQuantity());
-            System.out.println();
-
-            totalPrice += product.getProduct().getPrice() * product.getQuantity();
+                totalPrice += product.getProduct().getPrice() * product.getQuantity();
+            }
+            System.out.println("Total price: " + totalPrice);
+        } else {
+            System.out.println("Your cart is empty");
         }
-        System.out.println("Total price: " + totalPrice);
+    }
+
+    public void viewOrderHistory(){
+        if(!orderHistory.isEmpty()){
+            System.out.println("Your order history contains:");
+            for (cartProduct product : orderHistory) {
+                System.out.println("Name: " + product.getProduct().getName());
+                System.out.println("Price: " + product.getProduct().getPrice());
+                System.out.println("Quantity: " + product.getQuantity());
+                System.out.println();
+                System.out.println();
+            }
+        }
+        else{
+            System.out.println("Your order history is empty");
+        }
     }
 
     public void addingMenu() {
@@ -147,7 +166,7 @@ public class Customer extends User {
         Session session = Session.getSession();
         do {
             System.out.println(
-                    "1. View all items    2. View by Galaxy    3. View by Planet    4. View items in cart    5. Log out");
+                    "1. View all items    2. View by Galaxy    3. View by Planet    4. View items in cart    5. View order History    6.Log out");
             int choice = session.readInt();
             switch (choice) {
                 case 1:
@@ -185,7 +204,7 @@ public class Customer extends User {
                     do {
                         viewCart();
 
-                        System.out.println("1. Remove item from cart    2. Update Item in cart    3. Back");
+                        System.out.println("1. Remove item from cart    2. Update Item in cart    3. Confirm purchase    4.Back");
                         int choice3 = session.readInt();
                         switch (choice3) {
                             case 1:
@@ -201,6 +220,13 @@ public class Customer extends User {
                                 updateCartItem(name2);
                                 break;
                             case 3:
+                                for (cartProduct product : inCart) {
+                                    orderHistory.add(product);
+                                }
+                                inCart.clear();
+                                System.out.println("Purchase confirmed");
+                                break;
+                            case 4:
                                 back2 = true;
                                 break;
                             default:
@@ -210,6 +236,11 @@ public class Customer extends User {
                     } while (!back2);
                     break;
                 case 5:
+                    viewOrderHistory();
+                    System.out.println("Press 0 to go back");
+                    session.readInt();
+                    break;
+                case 6:
                     return;
                 default:
                     System.out.println("Invalid input");

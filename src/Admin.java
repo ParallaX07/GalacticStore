@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 
 class Admin extends User {
-    ArrayList<Product> allProducts = Store.getAllProducts();
+    private ArrayList<Product> allProducts = Store.getAllProducts();
     public Admin(String name, int age, String gender, String email, String password) {
         super(name, age, gender, email, password);
     }
