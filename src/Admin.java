@@ -1,6 +1,7 @@
+
 import java.util.ArrayList;
 
-class Admin extends User  {
+class Admin extends User {
     ArrayList<Product> allProducts = Store.getAllProducts();
     public Admin(String name, int age, String gender, String email, String password) {
         super(name, age, gender, email, password);
@@ -8,46 +9,40 @@ class Admin extends User  {
 
     public void addItem () {
         Session session = Session.getSession();
-        System.out.println("Enter details of product to add");
-        System.out.print("Enter name");
+        System.out.println("Enter details of product to add:-");
+        System.out.println("Enter name: ");
+        System.out.print("> ");
         String name = session.scanString.nextLine();
-        System.out.println("Enter price");
+        System.out.println("Enter price: ");
         double price = session.readDouble();
-        System.out.println("Enter stock");
+        System.out.println("Enter stock: ");
         int stock = session.readInt();
-        System.out.println("Enter planet");
+        System.out.println("Enter planet: ");
+        System.out.print("> ");
         String planet = session.scanString.nextLine();
-        System.out.println("Enter galaxy");
+        System.out.println("Enter galaxy: ");
+        System.out.print("> ");
         String galaxy = session.scanString.nextLine();
-        System.out.println("Enter condition");
+        System.out.println("Enter condition: ");
+        System.out.print("> ");
         String condition = session.scanString.nextLine();
         Product product = new Product(name, price, stock, planet, galaxy, condition);
 
-        if (searchItem(name) != null) {
-            System.out.println(product.getName() + " already in store");
+        if (Store.searchItem(name) != null) {
+            System.out.println(product.getName() + " already in store.");
             return;
         }
         
-        allProducts.add(product);
-        System.out.println("Product \"" + product.getName() + "\" added");
-    }
-
-    @Override
-    public Product searchItem(String name){
-        for (int i = 0; i < allProducts.size(); i++) {
-            if (allProducts.get(i).getName().toLowerCase().equals(name.toLowerCase())) {
-                return allProducts.get(i);
-            }
-        }
-        return null;
+        Store.getAllProducts().add(product);
+        System.out.println("Product \"" + product.getName() + "\" added.");
     }
 
     public void removeItem (String name) {
-        if (searchItem(name) != null) {
-            allProducts.remove(searchItem(name));
+        if (Store.searchItem(name) != null) {
+            allProducts.remove(Store.searchItem(name));
             return;
         }else 
-            System.out.println("Product not found");
+            System.out.println("Product not found.");
     }
 
     @Override
@@ -70,7 +65,8 @@ class Admin extends User  {
                                 addItem();
                                 break;
                             case 2:
-                                System.out.print("Enter name of item you want to remove: ");
+                                System.out.println("Enter name of item you want to remove: ");
+                                System.out.print("> ");
                                 String name2 = session.scanString.nextLine();
                                 removeItem(name2);
                                 System.out.println("Product \"" + name2 + "\" removed");
@@ -100,49 +96,54 @@ class Admin extends User  {
 
     public void updateItem(){
         System.out.println("Enter name of product to update: ");
+        System.out.print("> ");
         String name = Session.getSession().scanString.nextLine();
-        Product product = searchItem(name);
+        Product product = Store.searchItem(name);
         System.out.println("What do you want to update?");
         System.out.println("1. Name    2. Price    3. Stock    4. Planet    5. Galaxy    6. Condition");
         int choice = Session.getSession().readInt();
         switch(choice){
             case 1:
-                System.out.println("Enter new name");
+                System.out.println("Enter new name: ");
+                System.out.print("> ");
                 String newName = Session.getSession().scanString.nextLine();
                 String oldName = product.getName();
                 product.setName(newName);
                 System.out.println("Product \"" + oldName + "\" updated to \"" + newName + "\"");
                 break;
             case 2:
-                System.out.println("Enter new price");
+                System.out.println("Enter new price: ");
                 double newPrice = Session.getSession().readDouble();
                 double oldPrice = product.getPrice();
                 product.setPrice(newPrice);
                 System.out.println("Product \"" + product.getName() + "\" price updated from \"" + oldPrice + "\" to \"" + newPrice + "\"");
                 break;
             case 3:
-                System.out.println("Enter new stock");
+                System.out.println("Enter new stock: ");
                 int newStock = Session.getSession().readInt();
                 int oldStock = product.getStock();
                 product.setStock(newStock);
                 System.out.println("Product \"" + product.getName() + "\" stock updated from \"" + oldStock + "\" to \"" + newStock + "\"");
                 break;
             case 4:
-                System.out.println("Enter new planet");
+                System.out.println("Enter new planet: ");
+                System.out.print("> ");
                 String newPlanet = Session.getSession().scanString.nextLine();
                 String oldPlanet = product.getPlanet();
                 product.setPlanet(newPlanet);
                 System.out.println("Product \"" + product.getName() + "\" planet updated from \"" + oldPlanet + "\" to \"" + newPlanet + "\"");
                 break;
             case 5:
-                System.out.println("Enter new galaxy");
+                System.out.println("Enter new galaxy: ");
+                System.out.print("> ");
                 String newGalaxy = Session.getSession().scanString.nextLine();
                 String oldGalaxy = product.getGalaxy();
                 product.setGalaxy(newGalaxy);
                 System.out.println("Product \"" + product.getName() + "\" galaxy updated from \"" + oldGalaxy + "\" to \"" + newGalaxy + "\"");
                 break;
             case 6:
-                System.out.println("Enter new condition");
+                System.out.println("Enter new condition: ");
+                System.out.print("> ");
                 String newCondition = Session.getSession().scanString.nextLine();
                 String oldCondition = product.getCondition();
                 product.setCondition(newCondition);

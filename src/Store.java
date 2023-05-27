@@ -14,9 +14,9 @@ public class Store implements Serializable {
         return allUsers;
     }
 
-    public static void setAllUsers(ArrayList<User> allUsers) {
-        Store.allUsers = allUsers;
-    }
+    // public static void setAllUsers(ArrayList<User> allUsers) {
+    //     Store.allUsers = allUsers;
+    // }
     
     public static ArrayList<Product> getAllProducts() {
         return allProducts;
@@ -28,6 +28,15 @@ public class Store implements Serializable {
             System.out.println(product.toString());
             System.out.println();
         }
+    }
+
+    public static Product searchItem(String name) {
+        for (int i = 0; i < allProducts.size(); i++) {
+            if (allProducts.get(i).getName().toLowerCase().equals(name.toLowerCase())) {
+                return allProducts.get(i);
+            }
+        }
+        return null;
     }
 
     public static void displayGalaxyNames(){

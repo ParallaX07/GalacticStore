@@ -9,6 +9,7 @@ public class Session {
         int choice = -1;
         while (choice == -1) {
             try {
+                System.out.print("> ");
                 choice = this.scanInt.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
@@ -23,6 +24,7 @@ public class Session {
         double choice = -1;
         while (choice == -1) {
             try {
+                System.out.print("> ");
                 choice = this.scanInt.nextDouble();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
@@ -43,13 +45,17 @@ public class Session {
 
     private void createDatabase() {
         //todo add admin in user file
-        userList.add(new Admin("admin", 43, "Male", "admin@gmail.com", "password"));
-        userList.add(new Customer("customer1", 30, "Female", "customer1@gmail.com", "password"));
-        userList.add(new Customer("customer2", 345, "Male", "customer2@gmail.com", "password"));
-
-        for (User user : userList) {
-            Store.getAllUsers().add(user);
+        userList.add(new Admin("Admin", 43, "Male", "admin@gmail.com", "password"));
+        userList.add(new Customer("Customer1", 30, "Female", "customer1@gmail.com", "password"));
+        userList.add(new Customer("Customer2", 345, "Male", "customer2@gmail.com", "password"));
+        
+        //checks if any users were loaded from file to userList
+        if(Store.getAllUsers().size() < 1){
+            for (User user : userList) {
+                Store.getAllUsers().add(user);
+            }
         }
+
         //create some default user in file
         //todo create same product with condition type used and lower the price
         initalProduct[0] = new Product("Moon Rock Dust", 20, 5, "XVI", "Milky Way", "New");
@@ -65,18 +71,13 @@ public class Session {
         initalProduct[10] = new Product("Hyperdimensional FLux capacitor", 490, 5, "II", "Milky Way", "New");
         initalProduct[11] = new Product("Dark Matter Injector", 490, 5, "II", "Andromeda", "New");
 
-        for (Product product : initalProduct) {
-            Store.getAllProducts().add(product);
+        //checks if any products were loaded from file to productLists
+        if(Store.getAllProducts().size() < 1){
+            for (Product product : initalProduct) {
+                Store.getAllProducts().add(product);
+            }
         }
 
-        //or write in file like this:
-        //create a bin file with object of products
-        //todo use append fileoutputstream for final part of project
-        // try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("productListFile.bin"));) {
-        //     output.writeObject(initalProduct);
-        // } catch (Exception e) {
-        //     System.out.println("Error");
-        // }
     }
 
     public static Session getSession(){

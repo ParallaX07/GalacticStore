@@ -1,13 +1,15 @@
 public class Execution {
     public static void main(String[] args) {
 
+        FileHandler.loadUsersFromFile();
+        FileHandler.loadProductFromFile();
         Session session = Session.getSession();
         boolean exit = false;
+
         do {
             clearConsole();
-            FileHandler.saveProductsToFile();
-            FileHandler.saveUsersToFile();
-            FileHandler.loadUsersFromFile();
+            System.out.println("Users: " + Store.getAllUsers().size());
+            System.out.println("Products: " + Store.getAllProducts().size());
             System.out.println("1. Login    2. Sign up    3. Exit Program");
             int choice = session.readInt();
 
@@ -16,17 +18,19 @@ public class Execution {
                     // ask for email and password
                     System.out.print("Email: ");
                     String email = session.scanString.nextLine();
-                    System.out.println("Password: ");
+                    System.out.print("Password: ");
                     String password = session.scanString.nextLine();
 
                     // add try catch to match email and password
                     try {
-                        // call login method to match user
-                        User loginUser = login(email, password);
-                        System.out.println("Welcome " + loginUser.getName());
-                        loginUser.handleActions();
+                    // call login method to match user
+                    User loginUser = login(email, password);
+                    System.out.println("Welcome " + loginUser.getName() + " to the Galactic Store!");
+                    loginUser.handleActions();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                        System.out.println("Press 0 to go back");
+                        session.readInt();
                     }
                     break;
 
@@ -36,6 +40,7 @@ public class Execution {
                     break;
                 case 3:
                     FileHandler.saveUsersToFile();
+                    FileHandler.saveProductsToFile();
                     exit = true;
                     break;
                 default:
@@ -50,7 +55,7 @@ public class Execution {
         Session session = Session.getSession();
         int choice = -1;
 
-        System.out.println("Enter details");
+        System.out.println("Enter details:-");
         boolean valid = false;
         String email;
         do{
@@ -84,14 +89,17 @@ public class Execution {
             }
         }
 
-        System.out.print("Enter name: ");
+        System.out.println("Enter name: ");
+        System.out.print("> ");
         String name = session.scanString.nextLine();
-        System.out.print("Enter age: ");
+        System.out.println("Enter age: ");
         int age = session.readInt();
-        System.out.print("Enter gender: ");
+        System.out.println("Enter gender: ");
+        System.out.print("> ");
         String gender = session.scanString.nextLine();
         
-        System.out.print("Enter password: ");
+        System.out.println("Enter password: ");
+        System.out.print("> ");
         String password = session.scanString.nextLine();
 
         User customer = new Customer(name, age, gender, email, password);
@@ -113,19 +121,10 @@ public class Execution {
         System.out.println("Press 0 to go back");
     }
 
-    // todo change void to User
     public static User login(String email, String password) throws Exception {
-        // try (ObjectInputStream input = new ObjectInputStream(new
-        // FileInputStream("userListFile.bin"))) {
-        // User loginUser = (User)(input.readObject());
-        // //match mail and pass with userListFile
-        // } catch (Exception e) {
-        // System.out.println("File not found");
-        // }
-
         for (User user : Store.getAllUsers()) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                System.out.println("Login successful");
+                System.out.println("Login successful!");
                 return user;
             }
         }
