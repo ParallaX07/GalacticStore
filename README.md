@@ -48,7 +48,7 @@ This repository contains the source code for the Intergalactic Marketplace, incl
 | Customer  | Customer2 | 345 | Male   | customer2@gmail.com   | password  |
 
 # UML Diagram 
-![UML Diagram](https://i.ibb.co/4d3dNdK/Galactic-Store-drawio.png)
+![UML Diagram](https://i.ibb.co/Wx9NTyk/Galactic-Store-drawio-1.png)
 
 ## Usage
 
