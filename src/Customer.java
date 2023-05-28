@@ -8,7 +8,7 @@ public class Customer extends User {
         super(name, age, gender, email, password);
     }
 
-    public void addToCart(String name) {
+    private void addToCart(String name) {
         Session session = Session.getSession();
         Product product = Store.searchItem(name);
         int amount = 0;
@@ -50,10 +50,11 @@ public class Customer extends User {
         // change product incart quantity
         product.setStock(product.getStock() - amount);
         inCart.add(new cartProduct(product, amount));
+        
 
     }
 
-    public void removeFromCart(String name) {
+    private void removeFromCart(String name) {
         Product product = Store.searchItem(name);
         if (product == null) {
             System.out.println("Item does not exist");
@@ -68,7 +69,7 @@ public class Customer extends User {
         System.out.println("Item not in cart");
     }
 
-    public void updateCartItem(String name) {
+    private void updateCartItem(String name) {
         Session session = Session.getSession();
         Product product = Store.searchItem(name);
 
@@ -128,7 +129,7 @@ public class Customer extends User {
         }
     }
 
-    public void viewOrderHistory(){
+    private void viewOrderHistory(){
         if(!orderHistory.isEmpty()){
             System.out.println("Your order history contains:");
             for (cartProduct product : orderHistory) {
