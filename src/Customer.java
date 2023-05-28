@@ -127,7 +127,6 @@ public class Customer extends User {
                 System.out.println("Price: " + product.getProduct().getPrice());
                 System.out.println("Quantity: " + product.getQuantity());
                 System.out.println();
-                System.out.println();
             }
         }
         else{

@@ -37,7 +37,7 @@ public class FileHandler {
             }
 
         } catch (Exception e) {
-            System.out.println("Loading users failed " + e.getMessage());
+            System.out.println("Loading products failed " + e.getMessage());
         }
     }
     
