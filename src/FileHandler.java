@@ -1,3 +1,7 @@
+/**
+ * Utility class for loading and saving user and product data from/to files.
+ */
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -7,14 +11,14 @@ public class FileHandler {
         try (ObjectInputStream input = new ObjectInputStream(new FileInputStream("userListFile.bin"))) {
             @SuppressWarnings("unchecked")
             ArrayList<User> loadedUsers = (ArrayList<User>) input.readObject();
-            //Store.setAllUsers(loadedUsers);
 
             for (User user : loadedUsers) {
                 Store.getAllUsers().add(user);
             }
 
         } catch (Exception e) {
-            System.out.println("Loading users failed " + e.getMessage());
+            System.out.println("Loading users failed: " + e.getMessage());
+            System.out.println(e.getStackTrace());
         }
     }
 
@@ -22,7 +26,7 @@ public class FileHandler {
         try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("userListFile.bin"))) {
             output.writeObject(Store.getAllUsers());
         } catch (Exception e) {
-            System.out.println("Saving users failed " + e.getMessage());
+            System.out.println("Saving users failed: " + e.getMessage());
             System.out.println(e.getStackTrace());
         }
     }
@@ -36,16 +40,17 @@ public class FileHandler {
             }
 
         } catch (Exception e) {
-            System.out.println("Loading users failed " + e.getMessage());
+            System.out.println("Loading users failed: " + e.getMessage());
+            System.out.println(e.getStackTrace());
         }
     }
     
     public static void saveProductsToFile() {
         try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("productListFile.bin"))) {
             output.writeObject(Store.getAllProducts());
-            output.close();
         } catch (Exception e) {
-            System.out.println("Saving products failed " + e.getMessage());
+            System.out.println("Saving products failed: " + e.getMessage());
+            System.out.println(e.getStackTrace());
         }
     }
 }

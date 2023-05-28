@@ -1,3 +1,7 @@
+/**
+ * Abstract class for a user, holding common properties for all types of users.
+ */
+
 import java.io.Serializable;
 
 public abstract class User implements Actions, Serializable{

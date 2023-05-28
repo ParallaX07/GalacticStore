@@ -1,3 +1,8 @@
+/**
+ * Represents a product in a customer's cart, 
+ * including the product details and quantity.
+ */
+
 public class CartProduct implements java.io.Serializable{
     private Product product;
     private int quantity;

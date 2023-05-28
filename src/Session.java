@@ -1,10 +1,15 @@
+/**
+ * Session singleton class responsible for user and product management. 
+ * Also contains methods for reading user input.
+ */
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Session {
     private static Session session = null;
-    public Scanner scanInt = new Scanner(System.in);
+    public Scanner inputScanner = new Scanner(System.in);
     public Scanner scanString = new Scanner(System.in);
     private ArrayList<Product> initalProduct = new ArrayList<Product>();
     private ArrayList<User> userList = new ArrayList<User>();
@@ -14,13 +19,17 @@ public class Session {
         while (choice == -1) {
             try {
                 System.out.print("> ");
-                choice = this.scanInt.nextInt();
+                choice = this.inputScanner.nextInt();
+                if(choice < 0){
+                    System.out.println("Invalid input. Please enter a non-negative number.");
+                    choice = -1; // reset the choice
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
-                this.scanInt.nextLine(); // discard the invalid input
+                this.inputScanner.nextLine(); // discard the invalid input
             }
         }
-        this.scanInt.nextLine();  // clear the newline left by nextInt()
+        this.inputScanner.nextLine();  // clear the newline left by nextInt()
         return choice;
     }
 
@@ -29,13 +38,17 @@ public class Session {
         while (choice == -1) {
             try {
                 System.out.print("> ");
-                choice = this.scanInt.nextDouble();
+                choice = this.inputScanner.nextDouble();
+                if(choice < 0){
+                    System.out.println("Invalid input. Please enter a non-negative number.");
+                    choice = -1; // reset the choice
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
-                this.scanInt.nextLine(); // discard the invalid input
+                this.inputScanner.nextLine(); // discard the invalid input
             }
         }
-        this.scanInt.nextLine();  // clear the newline left by nextInt()
+        this.inputScanner.nextLine();  // clear the newline left by nextInt()
         return choice;
     }
 

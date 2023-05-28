@@ -1,3 +1,9 @@
+/**
+ * Represents a customer in the system.
+ * A customer can browse and purchase products.
+ * This class extends from the User class and implements the Actions interface.
+ */
+
 import java.util.ArrayList;
 
 public class Customer extends User {
