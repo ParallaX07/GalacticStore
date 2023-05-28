@@ -1,3 +1,10 @@
+package controllers;
+
+import database.FileHandler;
+import database.Store;
+import models.Customer;
+import models.User;
+
 /**
  * This class starts the program, creates an instance of Session.
  */

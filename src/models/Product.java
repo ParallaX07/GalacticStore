@@ -1,3 +1,4 @@
+package models;
 /**
  * Represents a product available for purchase.
  * Each product has a name, price, quantity, sector, galaxy, and condition.

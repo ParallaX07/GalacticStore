@@ -1,3 +1,4 @@
+package models;
 /**
  * Abstract class for a user, holding common properties for all types of users.
  */

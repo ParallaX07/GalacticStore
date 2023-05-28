@@ -1,9 +1,13 @@
+package database;
 /**
  * Static class serving as a data store for users and products.
  */
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import models.Product;
+import models.User;
 
 public class Store implements Serializable {
     //Session will write to file, and this will read from file

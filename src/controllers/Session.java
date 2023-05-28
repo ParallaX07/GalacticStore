@@ -1,3 +1,4 @@
+package controllers;
 /**
  * Session singleton class responsible for user and product management. 
  * Also contains methods for reading user input.
@@ -6,6 +7,12 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import database.Store;
+import models.Admin;
+import models.Customer;
+import models.Product;
+import models.User;
 
 public class Session {
     private static Session session = null;

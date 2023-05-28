@@ -1,3 +1,4 @@
+package models;
 /**
  * Represents a customer in the system.
  * A customer can browse and purchase products.
@@ -5,6 +6,11 @@
  */
 
 import java.util.ArrayList;
+
+import controllers.Execution;
+import controllers.Session;
+import database.Store;
+
 
 public class Customer extends User {
     private ArrayList<CartProduct> inCart = new ArrayList<CartProduct>();

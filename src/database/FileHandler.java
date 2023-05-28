@@ -1,9 +1,13 @@
+package database;
 /**
  * Utility class for loading and saving user and product data from/to files.
  */
 
 import java.io.*;
 import java.util.ArrayList;
+
+import models.Product;
+import models.User;
 
 public class FileHandler {
 

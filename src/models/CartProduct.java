@@ -1,3 +1,5 @@
+package models;
+
 /**
  * Represents a product in a customer's cart, 
  * including the product details and quantity.

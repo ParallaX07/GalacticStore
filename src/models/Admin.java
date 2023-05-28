@@ -1,10 +1,16 @@
+package models;
+
+import controllers.Execution;
+import controllers.Session;
+import database.Store;
+
 /**
  * Represents an administrator in the system.
  * An admin can manage products and has all rights in the system.
  * This class extends from the User class and implements the Actions interface.
  */
 
-class Admin extends User {
+public class Admin extends User {
     public Admin(String name, int age, String gender, String email, String password) {
         super(name, age, gender, email, password);
     }
