@@ -8,10 +8,13 @@ public class Customer extends User {
         super(name, age, gender, email, password);
     }
 
-    public void addToCart(String name) {
+    private void addToCart(String name) {
         Session session = Session.getSession();
         Product product = Store.searchItem(name);
         int amount = 0;
+
+        Execution.clearConsole();
+
         if (product == null) {
             System.out.println("Item does not exist");
             return;
@@ -25,6 +28,7 @@ public class Customer extends User {
         }
 
         while (amount > product.getStock()) {
+            Execution.clearConsole();
             System.out.println("Only " + product.getStock() + " of " + product.getName() + " available.");
             System.out.println("Please enter amount within this range: ");
             amount = session.readInt();
@@ -32,6 +36,7 @@ public class Customer extends User {
 
         for (cartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
+                Execution.clearConsole();
                 System.out.println("Item already in cart. Do you want to update the item? (y/n)");
                 String choice = session.scanString.nextLine();
                 if (choice.toLowerCase().equals("y")) {
@@ -45,10 +50,11 @@ public class Customer extends User {
         // change product incart quantity
         product.setStock(product.getStock() - amount);
         inCart.add(new cartProduct(product, amount));
+        
 
     }
 
-    public void removeFromCart(String name) {
+    private void removeFromCart(String name) {
         Product product = Store.searchItem(name);
         if (product == null) {
             System.out.println("Item does not exist");
@@ -63,10 +69,12 @@ public class Customer extends User {
         System.out.println("Item not in cart");
     }
 
-    public void updateCartItem(String name) {
+    private void updateCartItem(String name) {
         Session session = Session.getSession();
         Product product = Store.searchItem(name);
+
         if (product == null) {
+            Execution.clearConsole();
             System.out.println("Item does not exist");
             return;
         }
@@ -74,6 +82,7 @@ public class Customer extends User {
 
         for (cartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
+                Execution.clearConsole();
                 currentAmount = cartProduct.getQuantity();
                 System.out.println("Enter new amount: ");
                 int amount = session.readInt();
@@ -81,6 +90,7 @@ public class Customer extends User {
                 int addOrRemove = amount - currentAmount;
 
                 while (addOrRemove > product.getStock()) {
+                    Execution.clearConsole();
                     System.out.println("Only " + product.getStock() + " of " + product.getName() + " available.");
                     System.out.println("Please enter amount within this range: ");
                     amount = session.readInt();
@@ -119,7 +129,7 @@ public class Customer extends User {
         }
     }
 
-    public void viewOrderHistory(){
+    private void viewOrderHistory(){
         if(!orderHistory.isEmpty()){
             System.out.println("Your order history contains:");
             for (cartProduct product : orderHistory) {
@@ -164,18 +174,21 @@ public class Customer extends User {
     public void handleActions() {
         Session session = Session.getSession();
         do {
+            Execution.clearConsole();
             System.out.println(
                     "1. View all items    2. View by Galaxy    3. View by Planet    4. View items in cart    5. View order History    6.Log out");
             int choice = session.readInt();
             switch (choice) {
                 case 1:
+                    Execution.clearConsole();
                     Store.viewAllProducts();
                     addingMenu();
                     break;
                 case 2:
-                    boolean galaxyExists = false;
-                    String galaxy;
-                    do {
+                boolean galaxyExists = false;
+                String galaxy;
+                do {
+                        Execution.clearConsole();
                         Store.displayGalaxyNames();
                         System.out.println("Choose a galaxy: ");
                         System.out.print("> ");
@@ -186,10 +199,11 @@ public class Customer extends User {
                     addingMenu();
                     break;
                 case 3:
-                    String planet;
-                    boolean planetExists = false;
-
-                    do {
+                String planet;
+                boolean planetExists = false;
+                
+                do {
+                        Execution.clearConsole();
                         Store.displayPlanetNames();
                         System.out.println("Choose a planet: ");
                         System.out.print("> ");
@@ -199,8 +213,9 @@ public class Customer extends User {
                     addingMenu();
                     break;
                 case 4:
-                    boolean back2 = false;
-                    do {
+                boolean back2 = false;
+                do {
+                        Execution.clearConsole();
                         viewCart();
 
                         System.out.println("1. Remove item from cart    2. Update Item in cart    3. Confirm purchase    4.Back");
@@ -235,13 +250,16 @@ public class Customer extends User {
                     } while (!back2);
                     break;
                 case 5:
+                    Execution.clearConsole();
                     viewOrderHistory();
                     System.out.println("Press 0 to go back");
                     session.readInt();
                     break;
                 case 6:
+                    Execution.clearConsole();
                     return;
                 default:
+                    Execution.clearConsole();
                     System.out.println("Invalid input");
                     break;
             }
