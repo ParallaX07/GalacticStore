@@ -10,6 +10,7 @@ public class Session {
         int choice = -1;
         while (choice == -1) {
             try {
+                System.out.print("> ");
                 choice = this.scanInt.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
@@ -24,6 +25,7 @@ public class Session {
         double choice = -1;
         while (choice == -1) {
             try {
+                System.out.print("> ");
                 choice = this.scanInt.nextDouble();
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
@@ -44,9 +46,9 @@ public class Session {
 
     private void createDatabase() {
         //todo add admin in user file
-        userList.add(new Admin("admin", 43, "Male", "admin@gmail.com", "password"));
-        userList.add(new Customer("customer1", 30, "Female", "customer1@gmail.com", "password"));
-        userList.add(new Customer("customer2", 345, "Male", "customer2@gmail.com", "password"));
+        userList.add(new Admin("Admin", 43, "Male", "admin@gmail.com", "password"));
+        userList.add(new Customer("Customer1", 30, "Female", "customer1@gmail.com", "password"));
+        userList.add(new Customer("Customer2", 345, "Male", "customer2@gmail.com", "password"));
         
         //checks if any users were loaded from file to userList
         if(Store.getAllUsers().size() < 1){
