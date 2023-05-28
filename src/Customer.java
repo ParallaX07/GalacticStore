@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Customer extends User {
-    private ArrayList<cartProduct> inCart = new ArrayList<cartProduct>();
+    private ArrayList<CartProduct> inCart = new ArrayList<CartProduct>();
     ArrayList<Product> allProducts = Store.getAllProducts();
 
     public Customer(String name, int age, String gender, String email, String password) {
@@ -32,7 +32,7 @@ public class Customer extends User {
             amount = session.readInt();
         }
 
-        for (cartProduct cartProduct : inCart) {
+        for (CartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
                 System.out.println("Item already in cart. Do you want to update the item? (y/n)");
                 String choice = session.scanString.nextLine();
@@ -47,7 +47,7 @@ public class Customer extends User {
 
         // change product incart quantity
         product.setStock(product.getStock() - amount);
-        inCart.add(new cartProduct(product, amount));
+        inCart.add(new CartProduct(product, amount));
 
     }
 
@@ -57,7 +57,7 @@ public class Customer extends User {
             System.out.println("Item does not exist");
             return;
         }
-        for (cartProduct cartProduct : inCart) {
+        for (CartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
                 inCart.remove(cartProduct);
                 return;
@@ -75,7 +75,7 @@ public class Customer extends User {
         }
         int currentAmount = 0;
 
-        for (cartProduct cartProduct : inCart) {
+        for (CartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
                 currentAmount = cartProduct.getQuantity();
                 System.out.println("Enter new amount: ");
@@ -108,7 +108,7 @@ public class Customer extends User {
         double totalPrice = 0;
         System.out.println("Your cart contains:");
 
-        for (cartProduct product : inCart) {
+        for (CartProduct product : inCart) {
             System.out.println("Name: " + product.getProduct().getName());
             System.out.println("Price: " + product.getProduct().getPrice());
             System.out.println("Quantity: " + product.getQuantity());
