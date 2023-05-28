@@ -1,3 +1,8 @@
+/**
+ * Represents a product available for purchase.
+ * Each product has a name, price, quantity, sector, galaxy, and condition.
+ */
+
 import java.io.Serializable;
 
 public class Product implements Serializable{
@@ -7,9 +12,6 @@ public class Product implements Serializable{
     private String planet;
     private String galaxy;
     private String condition;
-
-    private int cartQuantity;
-
 
     public Product(String name, double price, int stock, String planet, String galaxy, String condition) {
         this.name = name;
@@ -67,14 +69,6 @@ public class Product implements Serializable{
 
     public void setCondition(String condition) {
         this.condition = condition;
-    }
-
-    public int getCartQuantity() {
-        return this.cartQuantity;
-    }
-
-    public void setCartQuantity(int cartQuantity) {
-        this.cartQuantity = cartQuantity;
     }
 
     public String toString(){

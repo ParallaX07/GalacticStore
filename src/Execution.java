@@ -1,3 +1,7 @@
+/**
+ * This class starts the program, creates an instance of Session.
+ */
+
 public class Execution {
     public static void main(String[] args) {
 

@@ -1,99 +1,71 @@
-#Galactic Goods: An intergalactic e-commerce store
+# Intergalactic Marketplace
 
-The program will serve as a terminal which links adjacent galaxies with identical terminals by using same interstellar waveform frequencies to allow for trading of rare and unique minerals throughout the Universe. 
+## Introduction
 
-1. Requirements gathering:
-Users can browse minerals which are categorized by planets of each galaxy that has adopted the use of Galactic Goods. Stock is synchronized throughout all terminals.
-Local currencies need to be converted to tokens. 
-Consider a search functionality for products, a sort and filter option for product listings, and user profile management (e.g., updating personal information, viewing order history).
-Determine any constraints such as the maximum number of items in the cart or specific rules for user registration (password strength, email validation, etc.).
+Intergalactic Marketplace is a Java-based application designed for buying and selling products from different galaxies. It supports various user types, including buyers, sellers, and admins, each with unique functionalities. The application allows users to interact with different products, manage their cart, and process transactions. It also facilitates user and product management for the admin.
 
-2. Design the classes and their relationships
-Consider using interfaces and abstract classes to better organize and structure your code.
-Implement exception handling to handle any errors gracefully and ensure the program's robustness.
-Implement a class that initializes all the products.
+## Contents
 
-3. Implement the classes: 
-Utilize Java's built-in libraries and classes where appropriate (e.g., LocalDate, List, arrayList). 
+This repository contains the source code for the Intergalactic Marketplace, including several classes representing various aspects of the marketplace:
 
-4. Implement the user interface (text-based): 
-Make the menu-driven interface as user-friendly as possible, using clear instructions and prompts.
-Validate user input to prevent errors and ensure the application behaves as expected.
-Implement a simple help system to guide users on how to use the application.
+1. `User`: An abstract class representing a user in the system. Contains common attributes like name, age, gender, email, and password.
 
-Sample of items:
+2. `Product`: Class representing a product in the system. Contains attributes like product name, price, quantity, location, and condition (new or used).
 
-Moon Rock Dust
-from the Planet XVI, Galaxy A
-Cost: 1 GG per kg
-Stock: 1 tonne
-Condition: New
+3. `Session`: Singleton class to manage user sessions in the marketplace.
 
-Hydro-polymer Flux capacitor
-from the Planet XVI, Galaxy A
-Cost: 2 GG
-Stock: 1e^5 
-Condition: Used
+4. `Store`: Static class to store all the users and products. 
 
-Carbonized Panels
-from the Planet XVI, Galaxy A
-Cost: 2.5 GG per item
-Stock: 3e^2 
-Condition: New
+5. `FileHandler`: Class handling reading from and writing to files. It stores users and products in binary format for persistence.
 
-Cryo-Cooled Quantum Processor
-From the Planet V, Galaxy C
-Cost: 10 GG
-Stock: 500
-Condition: New
+6. `cartProduct`: Class representing a product in a user's cart. Contains attributes like the product and its quantity.
 
-Galactic Graviton Inducer
-From the Planet IX, Galaxy D
-Cost: 5 GG
-Stock: 1e^4
-Condition: Used
+7. `Actions`: An interface defining the action handling method that all users should implement.
 
-Xenon Gas-filled Fusion Core
-From the Planet X, Galaxy B
-Cost: 15 GG
-Stock: 2e^3
-Condition: New
+# Initial Products
 
+| Product Name                        | Price | Quantity | Planet | Galaxy    | Condition |
+| ----------------------------------- | ----- | -------- | ------ | --------- | --------- |
+| Moon Rock Dust                      | 20    | 5        | XVI    | Milky Way | New       |
+| Hydro-polymer Flux capacitor        | 200   | 5        | XVI    | Whirlpool | New       |
+| Carbonised Panels                   | 100   | 5        | V      | Milky Way | New       |
+| Cyro-Cooled Quantum Processor       | 370   | 5        | V      | Whirlpool | New       |
+| Galactic Graviton Inductor          | 560   | 5        | IX     | Andromeda | Used      |
+| Xenon Gas-filled Fusion Core        | 320   | 5        | X      | Whirlpool | New       |
+| Neutrino Amplifier Array            | 490   | 5        | II     | Andromeda | New       |
+| Anti-Matter Reactor Chamber         | 780   | 5        | VII    | Andromeda | New       |
+| Hyperluminal Data Crystal           | 120   | 5        | III    | Whirlpool | Used      |
+| Quantum Entangled Transmitter       | 490   | 5        | II     | Andromeda | New       |
+| Hyperdimensional Flux capacitor     | 490   | 5        | II     | Milky Way | New       |
+| Dark Matter Injector                | 490   | 5        | II     | Andromeda | New       |
 
+# Initial Users
 
-Neutrino Amplifier Array
-From the Planet II, Galaxy A
-Cost: 20 GG
-Stock: 100
-Condition: New
+| User Type | User Name | Age | Gender | Email                 | Password  |
+| --------- | --------- | --- | ------ | --------------------- | --------- |
+| Admin     | Admin     | 43  | Male   | admin@gmail.com       | password  |
+| Customer  | Customer1 | 30  | Female | customer1@gmail.com   | password  |
+| Customer  | Customer2 | 345 | Male   | customer2@gmail.com   | password  |
 
-Anti-Matter Reactor Chamber
-From the Planet VII, Galaxy F
-Cost: 50 GG
-Stock: 100
-Condition: New
+# UML Diagram 
+![UML Diagram](https://i.ibb.co/wCp10Dv/Galactic-Store-drawio.png)
 
-Hyperluminal Data Crystal
-From the Planet III, Galaxy A
-Cost: 3 GG
-Stock: 2e^4
-Condition: Used
+## Usage
 
-Quantum Entangled Transmitter
-From the Planet XV, Galaxy G
-Cost: 25 GG
-Stock: 500
-Condition: New
+To use the Intergalactic Marketplace, follow these steps:
 
-Hyperdimensional Flux Capacitor
-From the Planet VI, Galaxy H
-Cost: 30 GG
-Stock: 1e^3
-Condition: New
+1. Clone the repository.
 
-Dark Matter Injector
-From the Planet XII, Galaxy E
-Cost: 40 GG
-Stock: 50 
-Condition: Used
+2. Open the project in your preferred Java IDE.
 
+3. Run the `Execution` class to start the application.
+
+The application will prompt you for interactions in the console. You can create users, add products, and perform various other operations.
+
+## Contributing
+
+If you'd like to contribute, please fork the repository and make changes as you'd like. Pull requests are warmly welcome.
+
+## Co-Author
+
+This project is co-authored by Tania Hussain. You can check her contributions [here](https://github.com/ParallaX07/GalacticStore/commits?author=TaniaHussain).

@@ -1,3 +1,7 @@
+/**
+ * Static class serving as a data store for users and products.
+ */
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

@@ -1,8 +1,13 @@
-public class cartProduct implements java.io.Serializable{
+/**
+ * Represents a product in a customer's cart, 
+ * including the product details and quantity.
+ */
+
+public class CartProduct implements java.io.Serializable{
     private Product product;
     private int quantity;
 
-    public cartProduct(Product product, int quantity) {
+    public CartProduct(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
