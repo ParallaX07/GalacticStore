@@ -31,7 +31,6 @@ public class FileHandler {
         try (ObjectInputStream input = new ObjectInputStream(new FileInputStream("productListFile.bin"))) {
             @SuppressWarnings("unchecked")
             ArrayList<Product> loadedproducts = (ArrayList<Product>) input.readObject();
-            System.out.println("loaded products: " + loadedproducts.size());
             for (Product product : loadedproducts) {
                 Store.getAllProducts().add(product);
             }

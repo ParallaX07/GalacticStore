@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Customer extends User {
-    private ArrayList<cartProduct> inCart = new ArrayList<cartProduct>();
-    private ArrayList<cartProduct> orderHistory = new ArrayList<cartProduct>();
+    private ArrayList<CartProduct> inCart = new ArrayList<CartProduct>();
+    private ArrayList<CartProduct> orderHistory = new ArrayList<CartProduct>();
 
     public Customer(String name, int age, String gender, String email, String password) {
         super(name, age, gender, email, password);
@@ -34,7 +34,7 @@ public class Customer extends User {
             amount = session.readInt();
         }
 
-        for (cartProduct cartProduct : inCart) {
+        for (CartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
                 Execution.clearConsole();
                 System.out.println("Item already in cart. Do you want to update the item? (y/n)");
@@ -49,7 +49,7 @@ public class Customer extends User {
 
         // change product incart quantity
         product.setStock(product.getStock() - amount);
-        inCart.add(new cartProduct(product, amount));
+        inCart.add(new CartProduct(product, amount));
         
 
     }
@@ -60,7 +60,7 @@ public class Customer extends User {
             System.out.println("Item does not exist");
             return;
         }
-        for (cartProduct cartProduct : inCart) {
+        for (CartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
                 inCart.remove(cartProduct);
                 return;
@@ -80,12 +80,16 @@ public class Customer extends User {
         }
         int currentAmount = 0;
 
-        for (cartProduct cartProduct : inCart) {
+        for (CartProduct cartProduct : inCart) {
             if (cartProduct.getProduct().getName().equals(product.getName())) {
                 Execution.clearConsole();
                 currentAmount = cartProduct.getQuantity();
                 System.out.println("Enter new amount: ");
                 int amount = session.readInt();
+                if(amount == 0){
+                    removeFromCart(name);
+                    return;
+                }
                 // if amount is more than current amount, remove from stock, else add to stock
                 int addOrRemove = amount - currentAmount;
 
@@ -115,7 +119,7 @@ public class Customer extends User {
         double totalPrice = 0;
         if (!inCart.isEmpty()) {
             System.out.println("Your cart contains:");
-            for (cartProduct product : inCart) {
+            for (CartProduct product : inCart) {
                 System.out.println("Name: " + product.getProduct().getName());
                 System.out.println("Price: " + product.getProduct().getPrice());
                 System.out.println("Quantity: " + product.getQuantity());
@@ -132,7 +136,7 @@ public class Customer extends User {
     private void viewOrderHistory(){
         if(!orderHistory.isEmpty()){
             System.out.println("Your order history contains:");
-            for (cartProduct product : orderHistory) {
+            for (CartProduct product : orderHistory) {
                 System.out.println("Name: " + product.getProduct().getName());
                 System.out.println("Price: " + product.getProduct().getPrice());
                 System.out.println("Quantity: " + product.getQuantity());
@@ -235,7 +239,7 @@ public class Customer extends User {
                                 updateCartItem(name2);
                                 break;
                             case 3:
-                                for (cartProduct product : inCart) {
+                                for (CartProduct product : inCart) {
                                     orderHistory.add(product);
                                 }
                                 inCart.clear();
