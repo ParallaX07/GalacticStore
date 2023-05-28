@@ -47,6 +47,9 @@ This repository contains the source code for the Intergalactic Marketplace, incl
 | Customer  | Customer1 | 30  | Female | customer1@gmail.com   | password  |
 | Customer  | Customer2 | 345 | Male   | customer2@gmail.com   | password  |
 
+![UML Diagram]([images/diagram.png](https://i.ibb.co/Vq4Djwt/image.png))
+
+
 ## Usage
 
 To use the Intergalactic Marketplace, follow these steps:
