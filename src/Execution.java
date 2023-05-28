@@ -1,4 +1,3 @@
-
 public class Execution {
     public static void main(String[] args) {
 
@@ -9,31 +8,35 @@ public class Execution {
 
         do {
             clearConsole();
-            System.out.println("Users: " + Store.getAllUsers().size());
-            System.out.println("Products: " + Store.getAllProducts().size());
+            // System.out.println("Users: " + Store.getAllUsers().size());
+            // System.out.println("Products: " + Store.getAllProducts().size());
             System.out.println("1. Login    2. Sign up    3. Exit Program");
             int choice = session.readInt();
 
             switch (choice) {
                 case 1:
                     // ask for email and password
+                    clearConsole();
                     System.out.print("Email: ");
                     String email = session.scanString.nextLine();
-                    System.out.println("Password: ");
+                    System.out.print("Password: ");
                     String password = session.scanString.nextLine();
 
                     // add try catch to match email and password
                     try {
-                        // call login method to match user
-                        User loginUser = login(email, password);
-                        System.out.println("Welcome " + loginUser.getName());
-                        loginUser.handleActions();
+                    // call login method to match user
+                    User loginUser = login(email, password);
+                    System.out.println("Welcome " + loginUser.getName() + " to the Galactic Store!");
+                    loginUser.handleActions();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                        System.out.println("Press 0 to go back");
+                        session.readInt();
                     }
                     break;
 
                 case 2:
+                    clearConsole();
                     // call method to add user
                     signUp();
                     break;
@@ -43,6 +46,7 @@ public class Execution {
                     exit = true;
                     break;
                 default:
+                    clearConsole();
                     System.out.println("Invalid input");
                     break;
             }
@@ -54,11 +58,12 @@ public class Execution {
         Session session = Session.getSession();
         int choice = -1;
 
-        System.out.println("Enter details");
         boolean valid = false;
         String email;
         do{
+            clearConsole();
             valid = true;
+            System.out.println("Enter details:-");
             System.out.print("Enter email: ");
             email = session.scanString.nextLine();
             if (!email.contains("@")) {
@@ -66,6 +71,7 @@ public class Execution {
                 invalidInput();
                 choice = session.readInt();
                 while (choice != 0) {
+                    clearConsole();
                     invalidInput();
                     choice = session.readInt();
                 }
@@ -76,6 +82,7 @@ public class Execution {
 
         for (User user : Store.getAllUsers()) {
             if (user.getEmail().toLowerCase().equals(email.toLowerCase())) {
+                clearConsole();
                 System.out.println("Already registered");
                 System.out.println("Press 0 to go back");
                 choice = session.readInt();
@@ -88,19 +95,23 @@ public class Execution {
             }
         }
 
-        System.out.print("Enter name: ");
+        System.out.println("Enter name: ");
+        System.out.print("> ");
         String name = session.scanString.nextLine();
-        System.out.print("Enter age: ");
+        System.out.println("Enter age: ");
         int age = session.readInt();
-        System.out.print("Enter gender: ");
+        System.out.println("Enter gender: ");
+        System.out.print("> ");
         String gender = session.scanString.nextLine();
         
-        System.out.print("Enter password: ");
+        System.out.println("Enter password: ");
+        System.out.print("> ");
         String password = session.scanString.nextLine();
 
         User customer = new Customer(name, age, gender, email, password);
 
         Store.getAllUsers().add(customer);
+        clearConsole();
         System.out.println("Sign up successful!");
         System.out.println("Press 0 to go back");
         choice = session.readInt();
@@ -113,27 +124,20 @@ public class Execution {
     }
 
     public static void invalidInput() {
+        clearConsole();
         System.out.println("Invalid input");
         System.out.println("Press 0 to go back");
     }
 
-    // todo change void to User
     public static User login(String email, String password) throws Exception {
-        // try (ObjectInputStream input = new ObjectInputStream(new
-        // FileInputStream("userListFile.bin"))) {
-        // User loginUser = (User)(input.readObject());
-        // //match mail and pass with userListFile
-        // } catch (Exception e) {
-        // System.out.println("File not found");
-        // }
-
         for (User user : Store.getAllUsers()) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                System.out.println("Login successful");
+                clearConsole();
+                System.out.println("Login successful!");
                 return user;
             }
         }
-
+        clearConsole();
         throw new Exception("User not found");
     }
 

@@ -1,4 +1,4 @@
-public class CartProduct {
+public class CartProduct implements java.io.Serializable{
     private Product product;
     private int quantity;
 
