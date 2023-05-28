@@ -30,6 +30,15 @@ public class Store implements Serializable {
         }
     }
 
+    public static Product searchItem(String name) {
+        for (int i = 0; i < allProducts.size(); i++) {
+            if (allProducts.get(i).getName().toLowerCase().equals(name.toLowerCase())) {
+                return allProducts.get(i);
+            }
+        }
+        return null;
+    }
+
     public static void displayGalaxyNames(){
         System.out.println("Galaxies:");
         //finds all unique galaxies from product list
